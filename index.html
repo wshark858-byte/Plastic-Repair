@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="mk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Поправка на пластика | Башино Село</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #f5f6f8;
+      color: #17191c;
+      line-height: 1.6;
+    }
+
+    /* МЕНИ */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+      background: rgba(15, 17, 20, 0.97);
+      padding: 18px 7%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      color: white;
+      font-size: 24px;
+      font-weight: 800;
+      letter-spacing: 1px;
+    }
+
+    .logo span {
+      color: #f0a500;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 30px;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      transition: 0.3s;
+    }
+
+    nav a:hover {
+      color: #f0a500;
+    }
+
+    /* ПОЧЕТНА */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 120px 7% 80px;
+      background:
+        linear-gradient(rgba(10, 12, 15, 0.88), rgba(10, 12, 15, 0.88)),
+        radial-gradient(circle at 80% 30%, #3b4149, #0c0e11 60%);
+      color: white;
+    }
+
+    .hero-content {
+      max-width: 850px;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 8px 15px;
+      border: 1px solid #f0a500;
+      color: #f0a500;
+      border-radius: 30px;
+      font-size: 14px;
+      font-weight: bold;
+      margin-bottom: 25px;
+    }
+
+    .hero h1 {
+      font-size: clamp(45px, 7vw, 82px);
+      line-height: 1.05;
+      margin-bottom: 25px;
+    }
+
+    .hero h1 span {
+      color: #f0a500;
+    }
+
+    .hero p {
+      max-width: 650px;
+      font-size: 20px;
+      color: #d0d3d6;
+      margin-bottom: 35px;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 15px 27px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    .primary {
+      background: #f0a500;
+      color: #111;
+    }
+
+    .primary:hover {
+      background: #ffc04d;
+      transform: translateY(-2px);
+    }
+
+    .secondary {
+      border: 1px solid #777;
+      color: white;
+    }
+
+    .secondary:hover {
+      border-color: #f0a500;
+      color: #f0a500;
+    }
+
+    /* СЕКЦИИ */
+    section {
+      padding: 90px 7%;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 55px;
+    }
+
+    .section-title h2 {
+      font-size: 42px;
+      margin-bottom: 12px;
+    }
+
+    .section-title p {
+      color: #666;
+      max-width: 600px;
+      margin: auto;
+    }
+
+    /* УСЛУГИ */
+    .services {
+      background: white;
+    }
+
+    .service-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 25px;
+    }
+
+    .service {
+      background: #f7f7f7;
+      padding: 35px;
+      border-radius: 10px;
+      border: 1px solid #e5e5e5;
+      transition: 0.3s;
+    }
+
+    .service:hover {
+      transform: translateY(-7px);
+      border-color: #f0a500;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.08);
+    }
+
+    .service-icon {
+      font-size: 38px;
+      margin-bottom: 20px;
+    }
+
+    .service h3 {
+      font-size: 23px;
+      margin-bottom: 12px;
+    }
+
+    .service p {
+      color: #666;
+    }
+
+    /* ЗА НАС */
+    .about {
+      background: #111419;
+      color: white;
+    }
+
+    .about-container {
+      max-width: 1000px;
+      margin: auto;
+      text-align: center;
+    }
+
+    .about h2 {
+      font-size: 42px;
+      margin-bottom: 20px;
+    }
+
+    .about p {
+      color: #c7c9cc;
+      font-size: 18px;
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 25px;
+      margin-top: 45px;
+    }
+
+    .feature {
+      padding: 25px;
+      border: 1px solid #30343a;
+      border-radius: 8px;
+    }
+
+    .feature strong {
+      display: block;
+      color: #f0a500;
+      font-size: 20px;
+      margin-bottom: 8px;
+    }
+
+    /* НАШАТА РАБОТА */
+    .gallery {
+      background: #f5f6f8;
+    }
+
+    .photo-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .photo-placeholder {
+      height: 240px;
+      border-radius: 10px;
+      background: #ddd;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #777;
+      font-weight: bold;
+      border: 2px dashed #aaa;
+    }
+
+    /* КОНТАКТ */
+    .contact {
+      background: white;
+    }
+
+    .contact-box {
+      max-width: 900px;
+      margin: auto;
+      background: #111419;
+      color: white;
+      padding: 50px;
+      border-radius: 12px;
+      text-align: center;
+    }
+
+    .contact-box h2 {
+      font-size: 40px;
+      margin-bottom: 15px;
+    }
+
+    .contact-box p {
+      color: #ccc;
+      margin-bottom: 25px;
+    }
+
+    .phone {
+      display: block;
+      font-size: 30px;
+      font-weight: bold;
+      color: #f0a500;
+      text-decoration: none;
+      margin-bottom: 25px;
+    }
+
+    .location {
+      color: #ddd;
+      margin-bottom: 30px;
+    }
+
+    /* ФУТЕР */
+    footer {
+      background: #08090b;
+      color: #777;
+      text-align: center;
+      padding: 25px;
+      font-size: 14px;
+    }
+
+    /* МОБИЛЕН */
+    @media (max-width: 800px) {
+
+      nav {
+        padding: 15px 5%;
+      }
+
+      nav ul {
+        display: none;
+      }
+
+      section {
+        padding: 70px 5%;
+      }
+
+      .service-grid,
+      .features,
+      .photo-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding-left: 5%;
+        padding-right: 5%;
+      }
+
+      .hero p {
+        font-size: 17px;
+      }
+
+      .contact-box {
+        padding: 35px 20px;
+      }
+
+      .contact-box h2 {
+        font-size: 32px;
+      }
+
+      .phone {
+        font-size: 25px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- МЕНИ -->
+  <nav>
+    <div class="logo">ПОПРАВКА<span>ПЛАСТИКА</span></div>
+
+    <ul>
+      <li><a href="#pocetna">Почетна</a></li>
+      <li><a href="#uslugi">Услуги</a></li>
+      <li><a href="#zanAs">За нас</a></li>
+      <li><a href="#rabota">Нашата работа</a></li>
+      <li><a href="#kontakt">Контакт</a></li>
+    </ul>
+  </nav>
+
+
+  <!-- ПОЧЕТНА -->
+  <section class="hero" id="pocetna">
+
+    <div class="hero-content">
+
+      <div class="badge">
+        ПРОФЕСИОНАЛНА ПОПРАВКА НА ПЛАСТИКА
+      </div>
+
+      <h1>
+        Професионална<br>
+        <span>поправка на пластика</span>
+      </h1>
+
+      <p>
+        Квалитетна и професионална поправка на оштетени
+        и скршени пластични делови во Башино Село и околината.
+      </p>
+
+      <div class="buttons">
+
+        <a href="tel:078377883" class="btn primary">
+          📞 Јавете се сега
+        </a>
+
+        <a href="#uslugi" class="btn secondary">
+          Нашите услуги
+        </a>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- УСЛУГИ -->
+  <section class="services" id="uslugi">
+
+    <div class="section-title">
+
+      <h2>Нашите услуги</h2>
+
+      <p>
+        Професионални решенија за оштетени и скршени
+        пластични делови.
+      </p>
+
+    </div>
+
+    <div class="service-grid">
+
+      <div class="service">
+
+        <div class="service-icon">🔧</div>
+
+        <h3>Поправка на пластика</h3>
+
+        <p>
+          Професионална поправка на оштетени
+          и скршени пластични делови.
+        </p>
+
+      </div>
+
+
+      <div class="service">
+
+        <div class="service-icon">⚙️</div>
+
+        <h3>Заварување на пластика</h3>
+
+        <p>
+          Прецизно заварување на пластика за
+          цврста и сигурна поправка.
+        </p>
+
+      </div>
+
+
+      <div class="service">
+
+        <div class="service-icon">🛠️</div>
+
+        <h3>Поправка на пукнатини</h3>
+
+        <p>
+          Поправка на пукнатини, скршени делови
+          и различни видови оштетувања.
+        </p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- ЗА НАС -->
+  <section class="about" id="zanAs">
+
+    <div class="about-container">
+
+      <h2>Квалитет на кој можете да му верувате</h2>
+
+      <p>
+        Кај Поправка на пластика се посветуваме на
+        професионална работа, квалитетни поправки
+        и внимание на секој детал.
+      </p>
+
+      <div class="features">
+
+        <div class="feature">
+          <strong>ПРОФЕСИОНАЛНО</strong>
+          Квалитетна и внимателна работа.
+        </div>
+
+        <div class="feature">
+          <strong>СИГУРНО</strong>
+          Сигурни и издржливи поправки.
+        </div>
+
+        <div class="feature">
+          <strong>ЛОКАЛНО</strong>
+          Ве услужуваме во Башино Село и околината.
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- НАШАТА РАБОТА -->
+  <section class="gallery" id="rabota">
+
+    <div class="section-title">
+
+      <h2>Нашата работа</h2>
+
+      <p>
+        Фотографии од нашите поправки ќе бидат
+        поставени овде наскоро.
+      </p>
+
+    </div>
+
+    <div class="photo-grid">
+
+      <div class="photo-placeholder">
+        ФОТОГРАФИЈА НАСКОРО
+      </div>
+
+      <div class="photo-placeholder">
+        ФОТОГРАФИЈА НАСКОРО
+      </div>
+
+      <div class="photo-placeholder">
+        ФОТОГРАФИЈА НАСКОРО
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- КОНТАКТ -->
+  <section class="contact" id="kontakt">
+
+    <div class="contact-box">
+
+      <h2>Потребна ви е поправка?</h2>
+
+      <p>
+        Јавете ни се за повеќе информации
+        и договор за поправка.
+      </p>
+
+      <a href="tel:078377883" class="phone">
+        078 377 883
+      </a>
+
+      <div class="location">
+        📍 Башино Село, 1400
+      </div>
+
+      <a href="tel:078377883" class="btn primary">
+        📞 Јавете се сега
+      </a>
+
+    </div>
+
+  </section>
+
+
+  <!-- ФУТЕР -->
+  <footer>
+
+    © 2026 Поправка на пластика — Башино Село
+
+  </footer>
+
+</body>
+</html>
